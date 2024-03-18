@@ -1,0 +1,50 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+{% load static %}
+
+<!-- HEADER -->
+<div class="container">
+    <div class="jumbotron" style="margin: 38px auto; background:url(https://i.ibb.co/nsTz1gg/Active-Listings.gif) no-repeat; background-size: 100%;"></header>
+    <h1> <br/><br/><br/><br/><br/> </h1>
+    </div>
+    
+<!-- LOOP TO OUTPUT ACTIVE LISTINGS -->
+    <div class="row text-left">
+    {% for object in object %}
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    {% if object.images %}
+                        <a  href="{% url 'listingpage' object.id %}">
+                            <img style="width: 100%; height: 10.3rem"  class="card-img-center" src="{{ object.images }}">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'listingpage' object.id %}">
+                            <img class="card-img-top" src="https://i.ibb.co/T8nxLQT/No-Image-Available.png" alt="">
+                        </a>
+                    {% endif %}  
+                    <div class="card-body">
+                    <center>    <h5 class="card-title"> {{ object.productnames }} </h5>  </center>
+                        <p class="card-text" style="margin: 5px"> <span style="font-size:small;"> Current Bid: </span> <span style="color: green; font-weight: bold" > ${{ object.startingbids }}  </span> 
+                        <br/> <span style="font-size: small; display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; max-height: 7.2em; line-height: 1.8em; margin-top: 10px"> 
+                                {{ object.descriptions }} </span> </p>
+                    </div>
+                    <div class="card-footer " style="background: white;">
+                        <a href="{% url 'listingpage' object.id %}" class="btn btn-lg btn-warning btn-block text-uppercase" style="font-size: 80%; border-radius: 5rem; letter-spacing: .1rem; font-weight: bold; ;transition: all 0.2s;" 
+                        class="btn">Check Item</a>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+ <!-- <img src="{{ object.images }}" onerror="this.style.opacity='0'"
+                     width="200" 
+                     class="ml-lg-5 order-1 order-lg-2" 
+                     alt="No Image Available for {{ object.productnames}}">  -->

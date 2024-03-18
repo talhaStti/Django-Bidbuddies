@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <body style="margin-top: 100px">
+        <section class="get-in-touch">
+        <h1 class="title">Create Listings</h1>
+        <form class="row" method="post">
+        {% csrf_token %}
+            <div class="form-field col-lg-12">           
+                 {{ form.productnames|as_crispy_field }}
+            </div>
+            <div class="form-field col-lg-6 ">
+                {{ form.startingbids|as_crispy_field }}
+            </div>
+            <div class="form col-lg-6 ">
+                {{ form.category|as_crispy_field }}
+            </div>
+            <div class="form col-lg-12 ">
+                {{ form.images|as_crispy_field }}
+            </div>
+            <div class="form-field col-lg-12" style="hidden">
+                {{ form.descriptions|as_crispy_field }}
+            </div>
+            <div class="contact-form form-field col-lg-12">
+                <input class="submit-btn" type="submit" value="Submit">
+            </div>
+        </form>
+        </section>
+    </body>
+
+{% endblock %}
+
